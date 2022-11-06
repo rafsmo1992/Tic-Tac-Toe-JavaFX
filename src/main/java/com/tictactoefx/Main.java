@@ -13,6 +13,7 @@ public class Main extends Application {
     private InfoCenter infoCenter;
     private TileBoard3 tileBoard3;
     private TileBoard10 tileBoard10;
+    private boolean GameBoardChecker;
     private boolean GameModeChecker;
     @Override
     public void start(Stage primaryStage)
@@ -45,6 +46,8 @@ public class Main extends Application {
         infoCenter.setX3GameOnAction(X3Game());
         infoCenter.setX10GameOnAction(X10Game());
         infoCenter.setPlayAgainButton(PlayAgain());
+        infoCenter.setPlayVsPlayer(PVP());
+        infoCenter.setPlayVsComputer(PVC());
         root.getChildren().add(infoCenter.getStackPane());
     }
     private EventHandler<ActionEvent>startNewGame()
@@ -57,11 +60,41 @@ public class Main extends Application {
                 tileBoard3.Hidepane();
                 tileBoard10.Hidepane();
                 infoCenter.hideStartButton();
-                infoCenter.showX3Button();
-                infoCenter.showX10Button();
+                infoCenter.showPlayVsPlayer();
+                //infoCenter.showPlayVsComputer();
+                //infoCenter.showX3Button();
+               // infoCenter.showX10Button();
                 infoCenter.hidePlayAgainButton();
                 //infoCenter.updateMessage("Player X's Turn");
                 //tileBoard3.startNewGame();
+            }
+        };
+    }
+
+    private EventHandler<ActionEvent>PVP()
+    {
+        return new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent e)
+            {
+                infoCenter.hidePlayVsPlayer();
+                //infoCenter.hidePlayVsComputer();
+                infoCenter.showX3Button();
+                infoCenter.showX10Button();
+                GameModeChecker = true;
+            }
+        };
+    }
+    private EventHandler<ActionEvent>PVC()
+    {
+        return new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent e)
+            {
+                infoCenter.hidePlayVsPlayer();
+                infoCenter.hidePlayVsComputer();
+                infoCenter.showX3Button();
+                infoCenter.showX10Button();
             }
         };
     }
@@ -71,7 +104,7 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent e)
             {
-                GameModeChecker = true;
+                GameBoardChecker = true;
                 tileBoard3.Showpane();
                 infoCenter.hideX3Button();
                 infoCenter.hideX10Button();
@@ -86,7 +119,7 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent e)
             {
-                GameModeChecker = false;
+                GameBoardChecker = false;
                 tileBoard10.Showpane();
                 infoCenter.hideX3Button();
                 infoCenter.hideX10Button();
@@ -96,13 +129,15 @@ public class Main extends Application {
         };
     }
 
+
+
     private EventHandler<ActionEvent>PlayAgain()
     {
         return new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent e)
             {
-                if(GameModeChecker) {
+                if(GameBoardChecker) {
                     infoCenter.hideStartButton();
                     infoCenter.hidePlayAgainButton();
                     tileBoard3.Showpane();

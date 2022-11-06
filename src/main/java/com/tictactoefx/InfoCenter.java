@@ -18,6 +18,10 @@ public class InfoCenter {
     private Button X10Button;
     private Button playAgainButton;
 
+    private Button playVsPlayer;
+
+    private Button playVsComputer;
+
 
 
     public InfoCenter(){
@@ -66,6 +70,19 @@ public class InfoCenter {
         pane.getChildren().add(X10Button);
         X10Button.setVisible(false);
 
+        playVsPlayer = new Button("PVP");
+        playVsPlayer.setMinSize(135,30);
+        playVsPlayer.setTranslateY(-20);
+        playVsPlayer.setTranslateX(-80);
+        pane.getChildren().add(playVsPlayer);
+        playVsPlayer.setVisible(false);
+
+        playVsComputer = new Button("PVC");
+        playVsComputer.setMinSize(135,30);
+        playVsComputer.setTranslateY(-20);
+        playVsComputer.setTranslateX(60);
+        pane.getChildren().add(playVsComputer);
+        playVsComputer.setVisible(false);
 
         playAgainButton = new Button("Play Again");
         playAgainButton.setMinSize(135,30);
@@ -116,6 +133,28 @@ public class InfoCenter {
         X10Button.setVisible(false);
 
     }
+    public void showPlayVsPlayer()
+    {
+        playVsPlayer.setVisible(true);
+
+    }
+    public void hidePlayVsPlayer()
+    {
+        playVsPlayer.setVisible(false);
+
+    }
+
+    public void showPlayVsComputer()
+    {
+        playVsComputer.setVisible(true);
+
+    }
+    public void hidePlayVsComputer()
+    {
+        playVsComputer.setVisible(false);
+
+    }
+
     public void showPlayAgainButton()
     {
         playAgainButton.setVisible(true);
@@ -126,6 +165,7 @@ public class InfoCenter {
         playAgainButton.setVisible(false);
 
     }
+
     public void setStartButtonOnAction(EventHandler<ActionEvent> onAction)
     {
         startGameButton.setOnAction(onAction);
@@ -144,6 +184,16 @@ public class InfoCenter {
     public void setPlayAgainButton(EventHandler<ActionEvent> onAction)
     {
         playAgainButton.setOnAction(onAction);
+
+    }
+    public void setPlayVsPlayer(EventHandler<ActionEvent> onAction)
+    {
+        playVsPlayer.setOnAction(onAction);
+
+    }
+    public void setPlayVsComputer(EventHandler<ActionEvent> onAction)
+    {
+        playVsComputer.setOnAction(onAction);
 
     }
 }
